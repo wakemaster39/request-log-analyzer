@@ -43,7 +43,7 @@ module RequestLogAnalyzer::FileFormat
     line_definition :completed do |line|
       line.footer = true
       line.teaser = /Completed /
-      line.regexp = /Completed (\d+)? .*in (\d+(?:\.\d+)?)ms[^\(]*\(Views: (\d+(?:\.\d+)?)ms .* ActiveRecord: (\d+(?:\.\d+)?)ms(?: .* Solr: (\d+(?:\.\d+)?)ms)?(?: .* Redis: (\d+(?:\.\d+)?)ms)?.*\)/
+      line.regexp = /Completed (\d+) .*in (\d+(?:\.\d+)?)ms(?:[^\(]*\(Views: (\d+(?:\.\d+)?)ms .* ActiveRecord: (\d+(?:\.\d+)?)ms(?: .* Solr: (\d+(?:\.\d+)?)ms)?(?: .* Redis: (\d+(?:\.\d+)?)ms)?.*\))?/
       line.capture(:status).as(:integer)
       line.capture(:duration).as(:duration, :unit => :msec)
       line.capture(:view).as(:duration, :unit => :msec)
